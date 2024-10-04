@@ -14,7 +14,8 @@ namespace PassionProject.Data.Migrations
                 name: "Colors",
                 columns: table => new
                 {
-                    ColorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ColorId = table.Column<int>(type: "int", nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
                     ColorName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

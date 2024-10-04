@@ -1,10 +1,17 @@
+using PassionProject;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using PassionProject.Data;
+using PassionProject.Interfaces;
+using PassionProject.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<ICardService, CardService>();
+builder.Services.AddScoped<IColorService, ColorService>();
+builder.Services.AddScoped<IArtistService, ArtistService>();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
