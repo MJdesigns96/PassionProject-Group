@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PassionProject.Data;
 using PassionProject.Interfaces;
 using PassionProject.Models;
+using PassionProject.Models.ViewModels;
 using PassionProject.Services;
 
 namespace PassionProject.Controllers
@@ -26,143 +27,113 @@ namespace PassionProject.Controllers
 
         public IActionResult Index()
         {
-            //return View();
             return RedirectToAction("List");
         }
-        // GET: cardspage/List
+        // GET: ArtistsPage/List
         public async Task<IActionResult> List()
         {
             IEnumerable<Artist> Artists = await _artistService.ListArtists();
-            return View(Index);
+            return View(Artists);
         }
 
-        // GET: ArtistsPage/Details/5
+        // GET: ArtistsPage/Details/{id}
+        [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
+            Artist? Artist = await _artistService.FindArtist(id);
+            if (Artist == null)
             {
-                return NotFound();
+                return View("Error", new ErrorViewModel() { Errors = ["Could not find Artist"] });
             }
-
-            var artist = await _artistService.FindArtist(id);
-            if (artist == null)
+            else
             {
-                return NotFound();
+                return View(Artist);
             }
-
-            return View(artist);
         }
 
-        // GET: ArtistsPage/Create
-        public IActionResult Create()
+        //GET ArtistsPage/Edit/{id}
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            Artist? Artist = await _artistService.FindArtist(id);
+            if (Artist == null)
+            {
+                return View("Error", new ErrorViewModel() { Errors = ["Could not find Artist"] });
+            }
+            else
+            {
+                return View(Artist);
+            }
         }
 
-        /* // POST: ArtistsPage/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST ArtistsPage/Update/{id}
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ArtistId,ArtistName")] Artist artist)
+        public async Task<IActionResult> Update(int id, Artist Artist)
         {
-            if (ModelState.IsValid)
+            ServiceResponse Response = await _artistService.UpdateArtist(id, Artist);
+
+            if (Response.Status == ServiceResponse.ServiceStatus.Updated)
             {
-                _artistService.Add(artist);
-                await _artistService.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("details", "ArtistsPage", new { id = id });
             }
-            return View(artist);
+            else
+            {
+                return View("Error", new ErrorViewModel() { Errors = Response.Messages });
+            }
         }
 
-        // GET: ArtistsPage/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET ArtistsPage/Create
+        public async Task<IActionResult> Create()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Artist Artist = new Artist();
 
-            var artist = await _artistService.Artists.FindAsync(id);
-            if (artist == null)
-            {
-                return NotFound();
-            }
-            return View(artist);
+            return View(Artist);
         }
 
-        // POST: ArtistsPage/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST ArtistsPage/Add
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ArtistId,ArtistName")] Artist artist)
+        public async Task<IActionResult> Add(Artist artist)
         {
-            if (id != artist.ArtistId)
-            {
-                return NotFound();
-            }
+            ServiceResponse response = await _artistService.AddArtist(artist);
 
-            if (ModelState.IsValid)
+            // check response
+            if (response.Status == ServiceResponse.ServiceStatus.Created)
             {
-                try
-                {
-                    _context.Update(artist);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ArtistExists(artist.ArtistId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("List");
             }
-            return View(artist);
+            else
+            {
+                return View("Error", new ErrorViewModel() { Errors = response.Messages });
+            }
         }
 
-        // GET: ArtistsPage/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET ArtistsPage/DeleteConfirm
+        [HttpGet]
+        public async Task<IActionResult> DeleteConfirm(int id)
         {
-            if (id == null)
+            Artist? Artist = await _artistService.FindArtist(id);
+            if (Artist == null)
             {
-                return NotFound();
+                return View("Error");
             }
-
-            var artist = await _context.Artists
-                .FirstOrDefaultAsync(m => m.ArtistId == id);
-            if (artist == null)
+            else
             {
-                return NotFound();
+                return View(Artist);
             }
-
-            return View(artist);
         }
 
-        // POST: ArtistsPage/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        // POST ArtistsPage/Delete/{id}
+        public async Task<IActionResult> Delete(int id)
         {
-            var artist = await _context.Artists.FindAsync(id);
-            if (artist != null)
+            ServiceResponse response = await _artistService.DeleteArtist(id);
+            if (response.Status == ServiceResponse.ServiceStatus.Deleted)
             {
-                _context.Artists.Remove(artist);
+                return RedirectToAction("List", "ArtistsPage");
             }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            else
+            {
+                return View("Error", new ErrorViewModel() { Errors = response.Messages });
+            }
         }
-
-        private bool ArtistExists(int id)
-        {
-            return _context.Artists.Any(e => e.ArtistId == id);
-        }
-        */
     }
 }

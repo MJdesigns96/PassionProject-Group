@@ -1,0 +1,20 @@
+﻿@model IEnumerable<PassionProject.Models.Artist>
+
+@{
+    ViewData["Title"] = "Artists";
+}
+
+<h1>Artists</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div href="row">
+    @foreach (var Artist in Model)
+    {
+        <div>
+            <h1><a href="/ArtistsPage/Details/@Artist.ArtistId">@Artist.ArtistName</a></h1>
+            <div>@Artist.Cards</div>
+        </div>
+    }
+</div>

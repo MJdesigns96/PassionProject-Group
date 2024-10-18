@@ -11,4 +11,9 @@ namespace PassionProject.Models
         // an artist has many cards (one-to-many)
         public ICollection<Card>? Cards { get; set; }
     }
+
+    public class ArtistDto
+    {
+        public string CardName { get; set; }
+    }
 }

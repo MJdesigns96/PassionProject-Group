@@ -25,11 +25,10 @@ namespace PassionProject.Controllers
 
         public IActionResult Index()
         {
-            //return View();
             return RedirectToAction("List");
         }
 
-        // GET: cardspage/List
+        // GET: CardsPage/List
         public async Task<IActionResult> List()
         {
             IEnumerable<Card> Cards = await _cardService.ListCards();

@@ -1,0 +1,16 @@
+﻿@model PassionProject.Models.Artist
+
+<div class="row">
+    <h1>Are you Sure?</h1>
+    <p>Are you sure you want to delete this Artist?</p>
+
+    <div class="card">
+        <div class="card-title">
+            <h1>@Model.ArtistName</h1>
+        </div>
+        <p>Once this card is deleted you will need to add it again</p>
+    </div>
+    <form method="post" action="/ArtistsPage/Delete/@Model.ArtistId">
+        <input type="submit" value="Delete" class="btn-danger" />
+    </form>
+</div>
