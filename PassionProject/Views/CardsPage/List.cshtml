@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PassionProject.Models.Card>
+
+    @{
+        ViewData["Title"] = "List";
+    }
+
+    <h1>List</h1>
+
+    <p>
+        <a>Create New</a>
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(Model => Model.CardName)
+                </th>
+            </tr>
+        </thead>
+    </table>
