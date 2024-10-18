@@ -19,5 +19,10 @@ namespace PassionProject.Models
         //a card can have many colors (one-to-many)
         public int ColorId { get; set; }
         public ICollection<Color> Colors { get; set; }
+
+        public static implicit operator Card(ServiceResponse v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

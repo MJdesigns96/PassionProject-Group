@@ -1,21 +1,23 @@
 ﻿@model IEnumerable<PassionProject.Models.Card>
 
     @{
-        ViewData["Title"] = "List";
+    ViewData["Title"] = "Collection";
     }
 
-    <h1>List</h1>
+    <h1>Collection</h1>
 
     <p>
-        <a>Create New</a>
+    <a asp-action="Create">Create New</a>
     </p>
-
-    <table>
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(Model => Model.CardName)
-                </th>
-            </tr>
-        </thead>
-    </table>
+    <div href="row">
+    @foreach(var Card in Model)
+    {
+        <div>
+            <h1><a href="/CardsPage/Details/@Card.CardId">@Card.CardName</a></h1>
+            <p>Colour: @Card.Colours</p>
+            <p>Artist: @Card.Artist</p>
+            <a class="btn btn-primary" href="/CardsPage/Edit/@Card.CardId">Edit</a>
+            <a class="btn btn-danger" href="/CardsPage/DeleteConfirm/@Card.CardId">Delete</a>
+        </div>
+    }
+</div>

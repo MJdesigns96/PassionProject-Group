@@ -1,0 +1,24 @@
+﻿@model PassionProject.Models.Card
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <a class="btn btn-primary" href="/CardsPage/Edit/@Model.CardId">Edit</a>
+    <a class="btn btn-danger" href="/CardsPage/DeleteConfirm/@Model.CardId">Delete</a>
+</div>
+<h1>@Html.DisplayFor(model => model.CardName)</h1>
+
+<div class="row">
+    <div>
+        <label>Colors:</label>
+        <p>@Html.DisplayFor(model => model.Colours)</p>
+    </div>
+    <div>
+        <label>Artist:</label>
+        <p>@Html.DisplayFor(model => model.Artist)</p>
+    </div>
+    <form action="/CardsPage/List">
+        <button type="submit">Back</button>
+    </form>
+</div>

@@ -1,0 +1,73 @@
+﻿@model PassionProject.Models.ViewModels.CardNew
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>New Card</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" action="/CardsPage/Add">
+            <div class="form-group">
+                <label class="control-label">Card Name:</label>
+                <input name="CardName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Colours">Colors: </label>
+                <input name="Colours" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="Artist">Artist: </label>
+                <input name="Artist" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ArtistId">ArtistId: </label>
+                <input name="ArtistId" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ArtistName">Artist Name: </label>
+                <select name="ArtistName" class="form-control">
+                    @foreach (var artist in Model.artists)
+                    {
+                        <option value="@artist.ArtistName">@artist.ArtistName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ColorId" class="control-label">ColorId:</label>
+                <select name="ColorId" class="form-control">
+                    @foreach (var id in Model.colors)
+                    {
+                        <option value="@id.ColorName">@id.ColorName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Colors" class="control-label">Colors:</label>
+                <select name="Colors" class="form-control">
+                    @foreach (var id in Model.colors)
+                    {
+                        <option value="@id.ColorName">@id.ColorName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>        
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
