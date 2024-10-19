@@ -10,19 +10,19 @@ Organizing one's collection has always been a challenge so I decided to create a
 
 This app should be able to do the following:
 1. Cards:
-  1. See a list of cards currently in the DB
-  2. Add Cards to the DB
-  3. Edit Card Info
-  4. Delete Cards
+  -   See a list of cards currently in the DB
+  -   Add Cards to the DB
+  -   Edit Card Info
+  -   Delete Cards
 2. Artists: 
-  1. See the Artists in the database
-  2. Edit Artist Info
-  3. Delete Artists
-  4. See the cards each artist has drawn**
+  -   See the Artists in the database
+  -   Edit Artist Info
+  -   Delete Artists
+  -   See the cards each artist has drawn**
 3. Colors:
-  1. See the different colors
-  2. See how many cards have each color
-  3. See a list of cards that belongs to each color**
+  -  See the different colors
+  -  See how many cards have each color
+  -  See a list of cards that belongs to each color**
 **still need to be added in
 
 Future Features:
