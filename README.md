@@ -22,7 +22,7 @@ This app should be able to do the following:
 3. Colors:
   -  See the different colors
   -  See how many cards have each color
-  -  See a list of cards that belongs to each color**
+  -  See a list of cards that belongs to each color** <br>
 **still need to be added in
 
 Future Features:
