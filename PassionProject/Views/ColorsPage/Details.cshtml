@@ -1,0 +1,19 @@
+﻿@model PassionProject.Models.ColorDto
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div>
+    <a class="btn btn-primary" href="/ColorsPage/Edit/@Model.ColorId">Edit</a>
+    <a class="btn btn-danger" href="/ColorsPage/DeleteConfirm/@Model.ColorId">Delete</a>
+</div>
+<h1>@Html.DisplayFor(model => model.ColorName)</h1>
+
+<div class="row">
+    <div>
+        <p>@Model.CardCount</p>
+    </div>
+    <form action="/ColorsPage/List">
+        <button type="submit">Back</button>
+    </form>
+</div>

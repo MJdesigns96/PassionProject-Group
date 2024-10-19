@@ -35,6 +35,7 @@ namespace PassionProject.Services
                 //put the information from the db into a package
                 ColorDtos.Add(new ColorDto()
                 {
+                    ColorId = Color.ColorId,
                     ColorName = Color.ColorName,
                     CardCount = "This color has " + Color.Cards.Count + " cards."
                 });
@@ -44,7 +45,7 @@ namespace PassionProject.Services
 
         public async Task<ColorDto> FindColor(int id)
         {
-            var color = await _context.Colors.FindAsync(id);
+            var color = await _context.Colors.FirstOrDefaultAsync(c => c.ColorId == id);
 
             if (color == null)
             {
@@ -54,6 +55,7 @@ namespace PassionProject.Services
             //instance of colorDto
             ColorDto ColorDto = new ColorDto()
             {
+                ColorId = color.ColorId,
                 ColorName = color.ColorName,
                 CardCount = "This color has " + color.Cards.Count + " cards."
             };

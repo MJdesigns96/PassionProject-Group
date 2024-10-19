@@ -14,6 +14,7 @@ namespace PassionProject.Models
 
     public class ColorDto
     {
+        public int ColorId { get; set; }
         public string ColorName { get; set; }
 
         public string CardCount { get; set; }

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<PassionProject.Models.ColorDto>
+
+@{
+    ViewData["Title"] = "Colors";
+}
+
+<h1>Colors</h1>
+
+<div href="row">
+    @foreach (var Color in Model)
+    {
+        <div>
+            <h1>@Color.ColorName</h1>
+            <div>
+                @Color.CardCount
+            </div>
+        </div>
+    }
+</div>

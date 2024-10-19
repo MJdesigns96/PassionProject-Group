@@ -6,9 +6,11 @@
 
     <h1>Collection</h1>
 
-    <p>
-    <a asp-action="Create">Create New</a>
-    </p>
+    <div class="row">
+        <form method="get" action="/CardsPage/Create">
+            <input type="submit" value="Create New" class="btn-primary" />
+        </form>
+    </div>
     <div href="row">
     @foreach(var Card in Model)
     {

@@ -15,7 +15,7 @@ namespace PassionProject.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/CardsPage/List");
         }
 
         public IActionResult Privacy()
