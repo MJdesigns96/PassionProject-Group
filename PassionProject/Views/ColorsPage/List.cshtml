@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PassionProject.Models.ColorDto>
+﻿@using System.Diagnostics
+@model IEnumerable<PassionProject.Models.ColorDto>
 
 @{
     ViewData["Title"] = "Colors";
@@ -7,13 +8,81 @@
 <h1>Colors</h1>
 
 <div href="row">
-    @foreach (var Color in Model)
-    {
-        <div>
-            <h1>@Color.ColorName</h1>
-            <div>
-                @Color.CardCount
+    <div class="col">
+        @foreach (var Color in Model)
+        {
+            <div class="row">
+                <div class="col">
+                    <h1>@Color.ColorName</h1>
+                    <div>
+                        @Color.CardCount
+                    </div>
+                </div>
+                <div class="col">
+                    @if (Color.ColorName == "white")
+                    {
+                        <div style="width: 50px;
+                          height: 50px;
+                          -webkit-border-radius: 25px;
+                          -moz-border-radius: 25px;
+                          border: solid 1px #000;
+                          border-radius: 25px;
+                          background: white;">
+                        </div>
+                    }
+                    else if (Color.ColorName == "blue")
+                    {
+                        <div style="width: 50px;
+                          height: 50px;
+                          -webkit-border-radius: 25px;
+                          -moz-border-radius: 25px;
+                          border-radius: 25px;
+                          background: blue;">
+                        </div>
+                    }
+                    else if (Color.ColorName == "black")
+                    {
+                        <div style="width: 50px;
+                          height: 50px;
+                          -webkit-border-radius: 25px;
+                          -moz-border-radius: 25px;
+                          border-radius: 25px;
+                          background: black;">
+                        </div>
+                    }
+                    else if (Color.ColorName == "red")
+                    {
+                        <div style="width: 50px;
+                          height: 50px;
+                          -webkit-border-radius: 25px;
+                          -moz-border-radius: 25px;
+                          border-radius: 25px;
+                          background: red;">
+                        </div>
+                    }
+                    else if (Color.ColorName == "green")
+                    {
+                        <div style="width: 50px;
+                          height: 50px;
+                          -webkit-border-radius: 25px;
+                          -moz-border-radius: 25px;
+                          border-radius: 25px;
+                          background: green;">
+                        </div>
+                    }
+                    else if (Color.ColorName == "colorless")
+                    {
+                        <div style="width: 50px;
+                          height: 50px;
+                          -webkit-border-radius: 25px;
+                          -moz-border-radius: 25px;
+                          border-radius: 25px;
+                          background: gray;">
+                        </div>
+                    }
+                </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+    
 </div>

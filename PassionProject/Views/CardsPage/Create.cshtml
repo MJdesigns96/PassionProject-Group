@@ -15,18 +15,46 @@
                 <label class="control-label">Card Name:</label>
                 <input name="CardName" class="form-control" />
             </div>
-            <div class="form-group">
+            <div class="form-group" id="colorChecker">
                 <label class="control-label" for="Colours">Colors: </label>
-                <input name="Colours" class="form-control" />
+                <input name="Colours" class="form-control" id="Colours" value=" " />
+                @*make a checkbox option for each checkbox then go to css and change the styling*@
+                <input type="checkbox" id="white" name="whiteColor" value="white"/>
+                <label for="white">white</label>
+                <input type="checkbox" id="blue" name="blueColor" value="blue" />
+                <label for="blue">blue</label>
+                <input type="checkbox" id="black" name="blackeColor" value="black" />
+                <label for="black">black</label>
+                <input type="checkbox" id="red" name="redColor" value="red" />
+                <label for="red">red</label>
+                <input type="checkbox" id="green" name="greenColor" value="green" />
+                <label for="green">green</label>
+                <input type="checkbox" id="multiple" name="multipleColors" value="multiple" />
+                <label for="multipleColors">multiple</label>
+                   
+                <script type="text/javascript">
+                    let colVal = document.getElementById("Colours");
+                    let temp = [];
+                    document.querySelector("#colorChecker").onclick = function (ev) {
+                        if (!temp.includes(ev.target.value) && ev.target.checked) {
+                            temp.push(ev.target.value);
+                        } else {
+                            let index = temp.indexOf(ev.target.value);
+                            temp.splice(index, 1);
+                        }
+                        colVal.value = temp.join(" ");
+                        console.log(ev.target.checked, ev.target.value);
+                    };
+                </script>
             </div>
             <div class="form-group">
                 <label class="control-label" for="Artist">Artist: </label>
                 <input name="Artist" class="form-control" />
+                @*make a script that sets hidden input fields' value reflective of the color chosen by the user above and artists below*@
             </div>
             <div class="form-group">
                 <label class="control-label" for="ArtistId">ArtistId: </label>
                 <input name="ArtistId" class="form-control" />
-
             </div>
             <div class="form-group">
                 <label class="control-label" for="ArtistName">Artist Name: </label>
@@ -42,7 +70,7 @@
                 <select name="ColorId" class="form-control">
                     @foreach (var id in Model.colors)
                     {
-                        <option value="@id.ColorName">@id.ColorName</option>
+                        <option value="@id.ColorId">@id.ColorName</option>
                     }
                 </select>
             </div>
