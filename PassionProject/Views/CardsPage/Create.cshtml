@@ -38,51 +38,63 @@
                     document.querySelector("#colorChecker").onclick = function (ev) {
                         if (!temp.includes(ev.target.value) && ev.target.checked) {
                             temp.push(ev.target.value);
-                        } else {
+                            console.log(temp);
+                        } else if (temp.includes(ev.target.value) && !ev.target.checked) {
                             let index = temp.indexOf(ev.target.value);
+                            console.log(temp);
                             temp.splice(index, 1);
                         }
-                        colVal.value = temp.join(" ");
+                        colVal.value = temp.join(", ");
                         console.log(ev.target.checked, ev.target.value);
                     };
                 </script>
             </div>
-            <div class="form-group">
-                <label class="control-label" for="Artist">Artist: </label>
-                <input name="Artist" class="form-control" />
-                @*make a script that sets hidden input fields' value reflective of the color chosen by the user above and artists below*@
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="ArtistId">ArtistId: </label>
-                <input name="ArtistId" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="ArtistName">Artist Name: </label>
-                <select name="ArtistName" class="form-control">
-                    @foreach (var artist in Model.artists)
-                    {
-                        <option value="@artist.ArtistName">@artist.ArtistName</option>
-                    }
-                </select>
-            </div>
+
             <div class="form-group">
                 <label for="ColorId" class="control-label">ColorId:</label>
-                <select name="ColorId" class="form-control">
+                <select name="ColorId" class="form-control" id="colorIDSelect">
                     @foreach (var id in Model.colors)
                     {
                         <option value="@id.ColorId">@id.ColorName</option>
+                        
                     }
+                    <script>
+                        document.querySelector("#colorIDSelect").onclick = function (ev) {
+                            let selection = ev.target.selectedOptions[0].innerHTML;
+                            document.querySelector("#Colors").value = selection;
+                        }
+                    </script>
                 </select>
             </div>
             <div class="form-group">
-                <label for="Colors" class="control-label">Colors:</label>
-                <select name="Colors" class="form-control">
-                    @foreach (var id in Model.colors)
+                <input type="hidden" name="Colors" id="Colors"/>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" name="Artist" class="form-control" id="Artist"/>
+            </div>
+            <div class="form-group">
+                <input type="hidden" name="ArtistName" class="form-control" id="ArtistName" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ArtistName">Artist: </label>
+                <select name="ArtistId" class="form-control" id="ArtistSelect">
+                    @foreach (var artist in Model.artists)
                     {
-                        <option value="@id.ColorName">@id.ColorName</option>
+                        <option value="@artist.ArtistId">@artist.ArtistName </option>
+                        
                     }
+                    <script>
+                        document.querySelector("#ArtistSelect").onclick = function (ev) {
+                            let artist = ev.target.value;
+                            let selection = ev.target.selectedOptions[0].innerHTML;
+                            document.querySelector("#Artist").value = selection;
+                            document.querySelector("#ArtistName").value = selection;
+                        }
+                    </script>
                 </select>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
