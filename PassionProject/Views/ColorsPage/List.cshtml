@@ -12,7 +12,13 @@
         @foreach (var Color in Model)
         {
             <div class="row">
-                <div class="col-1">
+                <div class="col">
+                    <h1>@Color.ColorName</h1>
+                    <div>
+                        @Color.CardCount
+                    </div>
+                </div>
+                <div class="col">
                     @if (Color.ColorName == "white")
                     {
                         <div style="width: 50px;
@@ -74,12 +80,6 @@
                           background: gray;">
                         </div>
                     }
-                </div>
-                <div class="col-7">
-                    <h1>@Color.ColorName</h1>
-                    <div>
-                        @Color.CardCount
-                    </div>
                 </div>
             </div>
         }

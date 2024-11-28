@@ -23,7 +23,7 @@ namespace PassionProject.Data.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "ColorId",
-                table: "Colors");
+                table: "Cards");
         }
     }
 }
