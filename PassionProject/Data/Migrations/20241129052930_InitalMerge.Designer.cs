@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PassionProject.Data;
 
@@ -11,9 +12,11 @@ using PassionProject.Data;
 namespace PassionProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241129052930_InitalMerge")]
+    partial class InitalMerge
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasIndex("ColorsColorId");
 
-                    b.ToTable("CardColor", (string)null);
+                    b.ToTable("CardColor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -268,7 +271,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasIndex("AlbumArtistId");
 
-                    b.ToTable("Albums", (string)null);
+                    b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("PassionProject.Models.AlbumArtist", b =>
@@ -288,7 +291,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasKey("AlbumArtistId");
 
-                    b.ToTable("AlbumArtists", (string)null);
+                    b.ToTable("AlbumArtists");
                 });
 
             modelBuilder.Entity("PassionProject.Models.Artist", b =>
@@ -305,7 +308,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasKey("ArtistId");
 
-                    b.ToTable("Artists", (string)null);
+                    b.ToTable("Artists");
                 });
 
             modelBuilder.Entity("PassionProject.Models.Card", b =>
@@ -338,7 +341,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasIndex("ArtistId");
 
-                    b.ToTable("Cards", (string)null);
+                    b.ToTable("Cards");
                 });
 
             modelBuilder.Entity("PassionProject.Models.Color", b =>
@@ -355,7 +358,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasKey("ColorId");
 
-                    b.ToTable("Colors", (string)null);
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("PassionProject.Models.Track", b =>
@@ -380,7 +383,7 @@ namespace PassionProject.Data.Migrations
 
                     b.HasIndex("AlbumId");
 
-                    b.ToTable("Tracks", (string)null);
+                    b.ToTable("Tracks");
                 });
 
             modelBuilder.Entity("CardColor", b =>
