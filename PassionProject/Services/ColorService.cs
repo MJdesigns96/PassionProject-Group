@@ -11,6 +11,7 @@ using PassionProject.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using Azure;
+using System.Diagnostics;
 
 namespace PassionProject.Services
 {
@@ -26,8 +27,10 @@ namespace PassionProject.Services
 
         public async Task<IEnumerable<ColorDto>> ListColors()
         {
-            //list the colors from all the rows of the table
+            //list the colors from all the rows of the table 
             List<Color> Colors = await _context.Colors.Include(c => c.Cards).ToListAsync();
+            Debug.WriteLine(Colors);
+
             //new colorDto
             List<ColorDto> ColorDtos = new List<ColorDto>();
             foreach (Color Color in Colors)
