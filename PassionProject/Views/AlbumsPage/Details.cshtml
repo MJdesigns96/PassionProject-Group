@@ -1,0 +1,20 @@
+﻿@model PassionProject.Models.Album;
+
+<h1>@Model.AlbumTitle</h1>
+<p>Genre: @Model.Genre</p>
+<p>Release Date: @Model.ReleaseDate.ToShortDateString()</p>
+
+<h2>Tracks</h2>
+@if (Model.Tracks != null && Model.Tracks.Any())
+{
+    <ol>
+        @foreach (var track in Model.Tracks)
+        {
+            <li>@track.TrackTitle - @track.TrackLength</li>
+        }
+    </ol>
+}
+else
+{
+    <p>No tracks found for this album.</p>
+}

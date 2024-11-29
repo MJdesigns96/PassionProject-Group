@@ -1,0 +1,25 @@
+﻿@model PassionProject.Models.AlbumArtist;
+
+<h1>Add Artist</h1>
+
+<form method="POST" asp-action="Create">
+    <div>
+        <label asp-for="AlbumArtistName"></label>
+        <input asp-for="AlbumArtistName" />
+        <span asp-validation-for="AlbumArtistName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="AlbumArtistBio"></label>
+        <textarea asp-for="AlbumArtistBio"></textarea>
+        <span asp-validation-for="AlbumArtistBio" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

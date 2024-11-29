@@ -1,0 +1,32 @@
+﻿@model IEnumerable<PassionProject.Model.Track>;
+
+@{
+    ViewData["Title"] = "Tracks";
+}
+
+<h1>Tracks Index</h1>
+
+<a asp-action="Create">Add Track</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Track Title</th>
+            <th>Track Length</th>
+            <th>Album Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var track in Model)
+        {
+            <tr>
+                <td>@track.TrackTitle</td>
+                <td>@track.TrackLength</td>
+                <td>@track.AlbumId</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@track.TrackId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@track.TrackId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

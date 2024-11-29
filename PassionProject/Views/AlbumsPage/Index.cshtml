@@ -1,0 +1,44 @@
+﻿@model IEnumerable<PassionProject.Models.Album>;
+@{
+    ViewData["Title"] = "Albums";
+}
+
+<h1>Albums Index</h1>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <span class="me-2">Sort by:</span>
+        <a asp-action="Index" asp-route-sortOrder="name" class="btn btn-link">Name</a>
+    </div>
+
+    <div>
+        <a asp-action="Create" class="btn btn-primary">Add Album</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Album Title</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>AlbumArtist</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var album in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@album.AlbumId">@album.AlbumTitle</a>
+                </td>
+                <td>@album.Genre</td>
+                <td>@album.ReleaseDate</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@album.AlbumId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@album.AlbumId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

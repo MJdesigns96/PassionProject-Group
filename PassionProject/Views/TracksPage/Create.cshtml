@@ -1,0 +1,30 @@
+﻿@model PassionProject.Models.Track;
+
+<h1>Add New Track</h1>
+
+<form method="POST" asp-action="Create">
+    <div>
+        <label asp-for="TrackTitle"></label>
+        <input asp-for="TrackTitle" />
+        <span asp-validation-for="TrackTitle" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="TrackLength"></label>
+        <input asp-for="TrackLength" placeholder="2:00" />
+        <span asp-validation-for="TrackLength" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="AlbumId"></label>
+        <select asp-for="AlbumId" asp-items="ViewBag.AlbumSelectList"></select>
+        <span asp-validation-for="AlbumId" class="text-danger"></span>
+    </div>
+    <div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

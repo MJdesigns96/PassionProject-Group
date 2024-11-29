@@ -1,0 +1,26 @@
+﻿@model PassionProject.Models.Album
+
+<h1>Edit Album</h1>
+
+<form method="POST" asp-action="Edit">
+    <div>
+        <label asp-for="AlbumTitle"></label>
+        <input asp-for="AlbumTitle" />
+    </div>
+    <div>
+        <label asp-for="Genre"></label>
+        <input asp-for="Genre" />
+    </div>
+    <div>
+        <label asp-for="ReleaseDate"></label>
+        <input asp-for="ReleaseDate" />
+    </div>
+    <div>
+        <label asp-for="AlbumArtistId"></label>
+        <input asp-for="AlbumArtistId" />
+    </div>
+    <input type="hidden" asp-for="AlbumId" />
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+</form>

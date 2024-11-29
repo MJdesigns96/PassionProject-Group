@@ -1,0 +1,25 @@
+﻿@model PassionProject.Models.AlbumArtist;
+
+<h1>@Model.AlbumArtistName</h1>
+@if (!string.IsNullOrEmpty(Model.AlbumArtistBio))
+{
+    <p>@Model.AlbumArtistBio</p>
+}
+
+<h2>Discography</h2>
+@if (Model.Albums != null && Model.Albums.Any())
+{
+    <ul>
+        @foreach (var album in Model.Albums)
+        {
+            <li>
+                <a href="@Url.Action("Details", "AlbumsPage", new { id = album.AlbumId })">@album.AlbumTitle</a>
+                - @album.ReleaseDate.ToShortDateString() (Genre: @album.Genre)
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>No albums found for this artist.</p>
+}
