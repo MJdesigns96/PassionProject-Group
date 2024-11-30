@@ -2,4 +2,55 @@
     ViewBag.Title = "LandingPage";
 }
 
-<h2>Landing</h2>
+<h2>Landing</h2>@{
+    ViewBag.Title = "LandingPage";
+}
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Welcome to the Card Collection</h2>
+        <p>Discover and collect your favourite cards. Match them with music from the Music Archive!</p>
+    </div>
+</section>
+<div>
+    <h3>Cards</h3>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var album in Model.Albums)
+            {
+                    <tr>
+                        <td>@album.AlbumTitle</td>
+                        <td>@album.Genre</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<div>
+    <h3>Albums</h3>
+    <table class="table table-striped table-boredered">
+        <thead>
+            <tr>
+                <th>Card</th>
+                <th>Artist</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var card in Model.Cards)
+            {
+                    <tr>
+                        <td>@card.CardName</td>
+                        <td>@card.Artist</td>
+                    </tr>
+            }
+        </tbody>
+        </table>
+</div>
+
