@@ -20,3 +20,6 @@ In its current form, the app allows users to:
   - a tally of how many cards are in each color
   - a tally of how many cards each artist has drawn
   - a section for an album associated with each card
+  - feature to select random album based on card/color association
+  - ability to create playlists for cards
+  - streamable links for album pages
