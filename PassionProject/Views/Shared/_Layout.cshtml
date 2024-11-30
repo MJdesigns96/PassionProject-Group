@@ -12,21 +12,36 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="CardsPage" asp-action="Index">Card Collection</a>
+                <a class="navbar-brand" asp-area="" asp-controller="CardsPage" asp-action="Index">Musical Cards</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CardsPage" asp-action="List">Cards</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cards
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="CardsPage" asp-action="List">Cards</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="ArtistsPage" asp-action="List">Artists</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="ColorsPage" asp-action="List">Colors</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ArtistsPage" asp-action="List">Artists</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ColorsPage" asp-action="List">Colors</a>
+                        <li class ="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Albums
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="AlbumsPage" asp-action="Index">Albums</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="AlbumArtistsPage" asp-action="Index">Artists</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="TracksPage" asp-action="Index">Tracks</a>
+                            </div>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -34,6 +49,9 @@
             </div>
         </nav>
     </header>
+    <script>
+        
+    </script>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
