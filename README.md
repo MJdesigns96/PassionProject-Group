@@ -21,6 +21,7 @@ In its current form, the app allows users to:
 ## Authorization
 This app has admin authentication, server and client side, where if a user is registered and an admin they will have access to CRUD features otherwise they will not be able to.
 
+## Future
 In the future there will be more updates and features added to this project such as:
 - a tally of how many cards are in each color
 - a tally of how many cards each artist has drawn
