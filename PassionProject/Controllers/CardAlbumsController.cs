@@ -19,6 +19,7 @@ namespace PassionProject.Controllers
         }
 
         // GET: CardAlbums/Create
+        [HttpGet("CardAlbums/Create")]
         public IActionResult Create()
         {
             ViewData["CardId"] = new SelectList(_context.Cards, "CardId", "CardName");
@@ -42,6 +43,7 @@ namespace PassionProject.Controllers
         }
 
         // GET: CardAlbums/Index
+        [HttpGet("CardAlbums/Index")]
         public IActionResult Index()
         {
             var cardAlbums = _context.CardAlbums.Include(c => c.Card).Include(c => c.Album).ToList();
@@ -49,6 +51,7 @@ namespace PassionProject.Controllers
         }
 
         // GET: CardAlbums/Edit/Id
+        [HttpGet("CardAlbums/Edit/{id}")]
         public IActionResult Edit(int id)
         {
             var cardAlbum = _context.CardAlbums.Find(id);
@@ -82,6 +85,7 @@ namespace PassionProject.Controllers
         }
 
         // GET: CardAlbums/Delete/Id
+        [HttpGet("CardAlbums/Delete/{id}")]
         public IActionResult Delete(int id)
         {
             var cardAlbum = _context.CardAlbums
