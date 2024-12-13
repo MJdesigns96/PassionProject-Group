@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.Operations;
 using Microsoft.EntityFrameworkCore;
@@ -29,13 +30,15 @@ namespace PassionProject.Controllers
 
         //POST
         [HttpPost]
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public async Task<IActionResult> Create([Bind("CardId,AlbumId")] CardAlbum cardAlbum)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(cardAlbum);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             ViewData["CardId"] = new SelectList(_context.Cards, "CardId", "CardName", cardAlbum.CardId);
             ViewData["AlbumId"] = new SelectList(_context.Albums, "AlbumId", "AlbumTitle", cardAlbum.AlbumId);
@@ -52,6 +55,8 @@ namespace PassionProject.Controllers
 
         // GET: CardAlbums/Edit/Id
         [HttpGet("CardAlbums/Edit/{id}")]
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public IActionResult Edit(int id)
         {
             var cardAlbum = _context.CardAlbums.Find(id);
@@ -86,6 +91,8 @@ namespace PassionProject.Controllers
 
         // GET: CardAlbums/Delete/Id
         [HttpGet("CardAlbums/Delete/{id}")]
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var cardAlbum = _context.CardAlbums
