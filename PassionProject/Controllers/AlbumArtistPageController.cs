@@ -2,6 +2,7 @@
 using PassionProject.Data;
 using Microsoft.EntityFrameworkCore;
 using PassionProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PassionProject.Controllers
 {
@@ -52,6 +53,8 @@ namespace PassionProject.Controllers
         }
 
         // GET: AlbumArtists/Create
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -72,6 +75,8 @@ namespace PassionProject.Controllers
         }
 
         // GET: AlbumArtists/Edit
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -106,6 +111,8 @@ namespace PassionProject.Controllers
         }
 
         // GET: AlbumArtists/Delete
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

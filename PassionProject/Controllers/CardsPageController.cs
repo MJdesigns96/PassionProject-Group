@@ -6,6 +6,7 @@ using PassionProject.Models;
 using PassionProject.Models.ViewModels;
 using PassionProject.Services;
 
+using Microsoft.AspNetCore.Authorization;
 
 namespace PassionProject.Controllers
 {
@@ -53,6 +54,8 @@ namespace PassionProject.Controllers
 
         //GET CardsPage/Edit/{id}
         [HttpGet]
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             Card? Card = await _cardService.FindCard(id);
@@ -80,6 +83,8 @@ namespace PassionProject.Controllers
         }
 
         // GET CardsPage/Create
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             IEnumerable<Artist> artists = await _artistService.ListArtists();
@@ -112,6 +117,8 @@ namespace PassionProject.Controllers
 
         // GET CardsPage/DeleteConfirm
         [HttpGet]
+        //[Authorize(Roles = "admin")]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
             Card? Card = await _cardService.FindCard(id);

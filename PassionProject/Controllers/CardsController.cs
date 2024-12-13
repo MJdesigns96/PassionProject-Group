@@ -9,6 +9,7 @@ using PassionProject;
 using PassionProject.Data;
 using PassionProject.Models;
 using PassionProject.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PassionProject.Controllers
 {
@@ -134,6 +135,7 @@ namespace PassionProject.Controllers
         /// Request Headers: Location: api/Cards/Find/{CardId}
         /// </example>
         [HttpPost(template: "Add")]
+        
         public async Task<ActionResult<Card>> AddCard(Card card)
         {
             //use ServiceResponse to respond when AddCard() goes through or not
@@ -168,6 +170,7 @@ namespace PassionProject.Controllers
         /// Response Code: 204 No Content
         /// </example>
         [HttpDelete("Delete/{id}")]
+
         public async Task<ActionResult> DeleteCard(int id)
         {
             //use ServiceResponse to respond when DeleteCard() goes through or not

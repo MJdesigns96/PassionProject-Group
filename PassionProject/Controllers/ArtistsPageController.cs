@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,7 @@ namespace PassionProject.Controllers
 
         //GET ArtistsPage/Edit/{id}
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
             Artist? Artist = await _artistService.FindArtist(id);
@@ -83,6 +85,7 @@ namespace PassionProject.Controllers
         }
 
         // GET ArtistsPage/Create
+        [Authorize]
         public async Task<IActionResult> Create()
         {
             Artist Artist = new Artist();
@@ -109,6 +112,7 @@ namespace PassionProject.Controllers
 
         // GET ArtistsPage/DeleteConfirm
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> DeleteConfirm(int id)
         {
             Artist? Artist = await _artistService.FindArtist(id);

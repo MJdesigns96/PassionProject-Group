@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PassionProject.Data;
@@ -22,6 +23,7 @@ namespace PassionProject.Controllers
         }
 
         // GET: Tracks/Create
+        [Authorize]
         public IActionResult Create()
         {
             var albums = _context.Albums.ToList();
@@ -48,6 +50,7 @@ namespace PassionProject.Controllers
         }
 
         //GET: Tracks/Edit
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             var track = await _context.Tracks.FindAsync(id);
@@ -83,6 +86,7 @@ namespace PassionProject.Controllers
         }
 
         // GET: Tracks/Delete
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
