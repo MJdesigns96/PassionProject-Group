@@ -21,6 +21,9 @@ In its current form, the app allows users to:
 ## Authorization
 This app has admin authentication, server and client side, where if a user is registered and an admin they will have access to CRUD features otherwise they will not be able to.
 
+## YouTube Integration Added
+With the addition of relationships between albums and cards, an admin can link an embedded youtube link with your created relations and view them in the details page.
+
 ## Future
 In the future there will be more updates and features added to this project such as:
 - a tally of how many cards are in each color
@@ -28,4 +31,3 @@ In the future there will be more updates and features added to this project such
 - a section for an album associated with each card
 - feature to select random album based on card/color association
 - ability to create playlists for cards
-- streamable links for album pages
