@@ -23,5 +23,6 @@ namespace PassionProject.Data
         public DbSet<AlbumArtist> AlbumArtists { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Track> Tracks { get; set; }
+        public DbSet<CardAlbum> CardAlbums { get; set; }
     }
 }

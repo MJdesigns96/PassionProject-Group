@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PassionProject.Models.CardAlbum>
+
+    @{
+        ViewData["Title"] = "Card Albums Index";
+    }
+
+    <h1>@ViewData["Title"]</h1>
+
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create")">Create New Album</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Card</th>
+                <th>Album</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Card.CardName</td>
+                <td>@item.Album.AlbumTitle</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
