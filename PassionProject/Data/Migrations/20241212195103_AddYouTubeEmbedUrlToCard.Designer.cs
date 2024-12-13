@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PassionProject.Data;
 
@@ -11,9 +12,11 @@ using PassionProject.Data;
 namespace PassionProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241212195103_AddYouTubeEmbedUrlToCard")]
+    partial class AddYouTubeEmbedUrlToCard
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -342,29 +345,6 @@ namespace PassionProject.Data.Migrations
                     b.ToTable("Cards");
                 });
 
-            modelBuilder.Entity("PassionProject.Models.CardAlbum", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AlbumId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CardId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AlbumId");
-
-                    b.HasIndex("CardId");
-
-                    b.ToTable("CardAlbums");
-                });
-
             modelBuilder.Entity("PassionProject.Models.Color", b =>
                 {
                     b.Property<int>("ColorId")
@@ -491,25 +471,6 @@ namespace PassionProject.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("ArtistName");
-                });
-
-            modelBuilder.Entity("PassionProject.Models.CardAlbum", b =>
-                {
-                    b.HasOne("PassionProject.Models.Album", "Album")
-                        .WithMany()
-                        .HasForeignKey("AlbumId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PassionProject.Models.Card", "Card")
-                        .WithMany()
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Album");
-
-                    b.Navigation("Card");
                 });
 
             modelBuilder.Entity("PassionProject.Models.Track", b =>

@@ -1,0 +1,25 @@
+﻿@model PassionProject.Models.CardAlbum
+
+@{
+    ViewData["Title"] = "Delete Card-Album Relationship";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h3>Are you sure you want to delete this Card-Album relationship?</h3>
+<hr />
+
+<div class="form-group">
+    <label>Card:</label>
+    <p>@Model.Card.CardName</p>
+</div>
+
+<div class="form-group">
+    <label>Album:</label>
+    <p>@Model.Album.AlbumTitle</p>
+</div>
+
+<form method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/CardAlbums/Index" class="btn btn-secondary">Back to List</a>
+</form>
