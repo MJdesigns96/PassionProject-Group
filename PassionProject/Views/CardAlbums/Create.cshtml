@@ -9,9 +9,9 @@
 <h3>Create New Card-Album Relationship</h3>
 <hr />
 
-<form method="POST" asp-action="Create">
+<form method="post" asp-action="Create">
     <div class="form-group">
-        <label asp-for="CardId">Card</label>
+        <label for="CardId">Card</label>
         <select id="CardId" name="CardId" class="form-control" asp-for="CardId">
             <option value="">Select a Card</option>
             @foreach (var card in ViewData["CardId"] as SelectList)
@@ -22,7 +22,7 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="AlbumId">Album</label>
+        <label for="AlbumId">Album</label>
         <select id="AlbumId" name="AlbumId" class="form-control" asp-for="AlbumId">
             <option value="">Select an Album</option>
             @foreach (var album in ViewData["AlbumId"] as SelectList)
@@ -32,6 +32,6 @@
         </select>
     </div>
 
-    <button type="submit" class="btn btn-primary" value="Create">Create</button>
+    <button type="submit" class="btn btn-primary">Create</button>
     <a href="/CardAlbums/Index" class="btn btn-secondary">Back to List</a>
 </form>
