@@ -14,5 +14,8 @@ namespace PassionProject.Models
         // Foreign key to Album
         public int AlbumId { get; set; }
         public virtual Album Album { get; set; }
+
+        // Youtube URL
+        public string? YoutubeEmbedUrl { get; set; }
     }
 }

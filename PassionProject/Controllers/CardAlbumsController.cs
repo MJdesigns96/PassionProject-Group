@@ -32,7 +32,7 @@ namespace PassionProject.Controllers
         [HttpPost]
         //[Authorize(Roles = "admin")]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("CardId,AlbumId")] CardAlbum cardAlbum)
+        public async Task<IActionResult> Create([Bind("CardId,AlbumId, YoutubeEmbedUrl")] CardAlbum cardAlbum)
         {
             if (ModelState.IsValid)
             {
@@ -71,7 +71,7 @@ namespace PassionProject.Controllers
 
         // POST: CardAlbums/Edit/Id
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CardId,AlbumId")] CardAlbum cardAlbum)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CardId,AlbumId,YoutubeEmbedUrl")] CardAlbum cardAlbum)
         {
             if (id != cardAlbum.Id)
             {
@@ -115,6 +115,27 @@ namespace PassionProject.Controllers
             _context.CardAlbums.Remove(cardAlbum);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // GET: CardAlbums/Details/Id
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var cardAlbum = await _context.CardAlbums
+                .Include(c => c.Card)
+                .Include(c => c.Album)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (cardAlbum == null)
+            {
+                return NotFound();
+            }
+
+            return View(cardAlbum);
         }
     }
 }
