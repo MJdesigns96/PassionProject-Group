@@ -12,7 +12,7 @@
     </div>
 
     <div>
-        <a asp-action="Create" class="btn btn-primary">Add Artist</a>
+        <a class="crudButton" asp-action="Create" class="btn btn-primary">Add Artist</a>
     </div>
 </div>
 
@@ -23,7 +23,7 @@
         <tr>
             <th>Artist</th>
             <th>Artist Bio</th>
-            <th>Actions</th>
+            <th class="crudButton">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +34,7 @@
                     <a asp-action="Details" asp-route-id="@artist.AlbumArtistId">@artist.AlbumArtistName</a>
                 </td>
                 <td>@artist.AlbumArtistBio</td>
-                <td>
+                <td class="crudButton">
                     <a asp-action="Edit" asp-route-id="@artist.AlbumArtistId">Edit</a>
                     <a asp-action="Delete" asp-route-id="@artist.AlbumArtistId">Delete</a>
                 </td>
@@ -42,3 +42,13 @@
         }
     </tbody>
 </table>
+
+<script type="text/javascript">
+    var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+    if (!userAuthorized) {
+        var crudbuttons = document.querySelectorAll(".crudButton");
+        crudbuttons.forEach(btn => {
+            btn.style.display = "none";
+        })
+    }
+</script>

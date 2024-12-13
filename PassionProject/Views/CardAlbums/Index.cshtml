@@ -7,7 +7,7 @@
     <h1>@ViewData["Title"]</h1>
 
     <p>
-        <a class="btn btn-primary" href="@Url.Action("Create")">Create New Album</a>
+        <a class="btn btn-primary crudButton" href="@Url.Action("Create")">Create New Album</a>
     </p>
 
     <table class="table">
@@ -15,7 +15,7 @@
             <tr>
                 <th>Card</th>
                 <th>Album</th>
-                <th>Actions</th>
+            <th class="crudButton">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -24,11 +24,22 @@
             <tr>
                 <td>@item.Card.CardName</td>
                 <td>@item.Album.AlbumTitle</td>
-                <td>
+                <td class="crudButton">
                     <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning">Edit</a>
                     <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger">Delete</a>
+                    <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-info">Details</a>
                 </td>
             </tr>
         }
         </tbody>
     </table>
+
+<script type="text/javascript">
+    var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+    if (!userAuthorized) {
+        var crudbuttons = document.querySelectorAll(".crudButton");
+        crudbuttons.forEach(btn => {
+            btn.style.display = "none";
+        })
+    }
+</script>

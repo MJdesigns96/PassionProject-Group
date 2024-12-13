@@ -11,7 +11,7 @@
         <a asp-action="Index" asp-route-sortOrder="name" class="btn btn-link">Name</a>
     </div>
 
-    <div>
+    <div class="crudButton">
         <a asp-action="Create" class="btn btn-primary">Add Album</a>
     </div>
 </div>
@@ -22,7 +22,7 @@
             <th>Album Title</th>
             <th>Genre</th>
             <th>Release Date</th>
-            <th>AlbumArtist</th>
+            <th class="crudButton">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -34,7 +34,7 @@
                 </td>
                 <td>@album.Genre</td>
                 <td>@album.ReleaseDate</td>
-                <td>
+                <td class="crudButton">
                     <a asp-action="Edit" asp-route-id="@album.AlbumId">Edit</a>
                     <a asp-action="Delete" asp-route-id="@album.AlbumId">Delete</a>
                 </td>
@@ -42,3 +42,13 @@
         }
     </tbody>
 </table>
+
+<script type="text/javascript">
+    var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+    if (!userAuthorized) {
+        var crudbuttons = document.querySelectorAll(".crudButton");
+        crudbuttons.forEach(btn => {
+            btn.style.display = "none";
+        })
+    }
+</script>

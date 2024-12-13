@@ -6,20 +6,30 @@
 
     <h1>Collection</h1>
 
-    <div class="row">
-        <form method="get" action="/CardsPage/Create">
-            <input type="submit" value="Create New" class="btn-primary" />
-        </form>
-    </div>
-    <div href="row">
+
+<div class="row crudButton">
+    <form method="get" action="/CardsPage/Create">
+        <input type="submit" value="Create New" class="btn-primary" />
+    </form>
+</div>
+<div href="row">
     @foreach(var Card in Model)
     {
         <div>
             <h1><a href="/CardsPage/Details/@Card.CardId">@Card.CardName</a></h1>
             <p>Colour: @Card.Colours</p>
             <p>Artist: @Card.Artist</p>
-            <a class="btn btn-primary" href="/CardsPage/Edit/@Card.CardId">Edit</a>
-            <a class="btn btn-danger" href="/CardsPage/DeleteConfirm/@Card.CardId">Delete</a>
+            <a class="btn btn-primary crudButton"  href="/CardsPage/Edit/@Card.CardId">Edit</a>
+            <a class="btn btn-danger crudButton" href="/CardsPage/DeleteConfirm/@Card.CardId">Delete</a>
         </div>
     }
-    </div>
+</div>
+<script type="text/javascript">
+    var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+    if (!userAuthorized) {
+        var crudbuttons = document.querySelectorAll(".crudButton");
+        crudbuttons.forEach(btn => {
+            btn.style.display = "none";
+        })
+    }
+</script>

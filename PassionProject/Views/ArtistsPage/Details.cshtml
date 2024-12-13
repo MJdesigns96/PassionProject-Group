@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-<div>
+<div class="crudButton">
     <a class="btn btn-primary" href="/ArtistsPage/Edit/@Model.ArtistId">Edit</a>
     <a class="btn btn-danger" href="/ArtistsPage/DeleteConfirm/@Model.ArtistId">Delete</a>
 </div>
@@ -19,3 +19,13 @@
         <button type="submit">Back</button>
     </form>
 </div>
+
+<script type="text/javascript">
+    var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+    if (!userAuthorized) {
+        var crudbuttons = document.querySelectorAll(".crudButton");
+        crudbuttons.forEach(btn => {
+            btn.style.display = "none";
+        })
+    }
+</script>
